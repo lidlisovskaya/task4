@@ -10,25 +10,25 @@ import service.PricingCalculatorCreator;
 public class WebDriverGoogleCloudTest extends CommonConditions {
 
     @Test
-    public void isTotalPriceMatchingIsCalculated() {
-        PricingCalculator calculator = PricingCalculatorCreator.withCredentialsFromProperty();
+    public void checkIsTotalPriceMatchingIsCalculated() {
+        PricingCalculator calculator = PricingCalculatorCreator.createWithCredentialsFromProperty();
         CloudCalculatorPage cloudCalculatorPage = new CloudHomePage(driver)
                 .openPage()
                 .searchForTerms()
                 .clickMatchingResult()
                 .chooseSection()
-                .numberOfInstancesEnter(calculator)
+                .enterNumberOfInstances(calculator)
                 .selectOS(calculator)
-                .provisioningModelSelection(calculator)
-                .seriesSelection(calculator)
-                .machineType(calculator)
-                .addGpuCheckboxclick()
-                .addGpuType(calculator)
-                .numberOfGpu(calculator)
+                .selectProvisioningModel(calculator)
+                .selectSeries(calculator)
+                .selectMachineType(calculator)
+                .clickAddGpuCheckbox()
+                .selectGpuType(calculator)
+                .selectNumberOfGpu(calculator)
                 .selectSSD(calculator)
                 .selectDataCenterLocation(calculator)
-                .committedUsage(calculator);
-        String priceMessageFromCalculatorPage = cloudCalculatorPage.calculate();
+                .selectCommittedUsage(calculator);
+        String priceMessageFromCalculatorPage = cloudCalculatorPage.calculateTotalPrice();
         softAssertions.assertTrue(priceMessageFromCalculatorPage.contains("USD"));
     }
 }

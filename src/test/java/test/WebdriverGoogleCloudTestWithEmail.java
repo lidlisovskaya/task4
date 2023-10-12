@@ -9,26 +9,26 @@ import service.PricingCalculatorCreator;
 
 public class WebdriverGoogleCloudTestWithEmail extends CommonConditions {
     @Test
-    public void isTotalPriceMatchingIsCalculated() {
-        PricingCalculator calculator = PricingCalculatorCreator.withCredentialsFromProperty();
+    public void checkIsTotalPriceFromEmailTheSameIsTotalPrice() {
+        PricingCalculator calculator = PricingCalculatorCreator.createWithCredentialsFromProperty();
         CloudCalculatorPage cloudCalculatorPage = new CloudHomePage(driver)
                 .openPage()
                 .searchForTerms()
                 .clickMatchingResult()
                 .chooseSection()
-                .numberOfInstancesEnter(calculator)
+                .enterNumberOfInstances(calculator)
                 .selectOS(calculator)
-                .provisioningModelSelection(calculator)
-                .seriesSelection(calculator)
-                .machineType(calculator)
-                .addGpuCheckboxclick()
-                .addGpuType(calculator)
-                .numberOfGpu(calculator)
+                .selectProvisioningModel(calculator)
+                .selectSeries(calculator)
+                .selectMachineType(calculator)
+                .clickAddGpuCheckbox()
+                .selectGpuType(calculator)
+                .selectNumberOfGpu(calculator)
                 .selectSSD(calculator)
                 .selectDataCenterLocation(calculator)
-                .committedUsage(calculator);
+                .selectCommittedUsage(calculator);
 
-        String priceMessageFromCalculatorPage = cloudCalculatorPage.calculate();
+        String priceMessageFromCalculatorPage = cloudCalculatorPage.calculateTotalPrice();
         YopmailHomePage yopmailHomePage = new YopmailHomePage(driver)
                 .openYopmailInNewTab();
         String emailAddress = yopmailHomePage.generateRandomEmailAddress();

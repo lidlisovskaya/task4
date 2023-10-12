@@ -90,7 +90,7 @@ public class CloudCalculatorPage extends BasePage {
         return this;
     }
 
-    public CloudCalculatorPage numberOfInstancesEnter(PricingCalculator calculator) {
+    public CloudCalculatorPage enterNumberOfInstances(PricingCalculator calculator) {
         numberOfInstancesSelector.get(0).sendKeys(calculator.getNumberOfInstances());
         log.info("Number of instances added");
         return this;
@@ -104,41 +104,41 @@ public class CloudCalculatorPage extends BasePage {
         return this;
     }
 
-    public CloudCalculatorPage provisioningModelSelection(PricingCalculator calculator) {
+    public CloudCalculatorPage selectProvisioningModel(PricingCalculator calculator) {
         clickThis(provisioningModelSelector);
         selectDropDownOption(calculator.getModel());
         log.info("Provision Model selected");
         return this;
     }
 
-    public CloudCalculatorPage seriesSelection(PricingCalculator calculator) {
+    public CloudCalculatorPage selectSeries(PricingCalculator calculator) {
         clickThis(seriesSelector);
         selectDropDownOption(calculator.getSeries());
         log.info("Series selected");
         return this;
     }
 
-    public CloudCalculatorPage machineType(PricingCalculator calculator) {
+    public CloudCalculatorPage selectMachineType(PricingCalculator calculator) {
         clickThis(machineTypeSelector);
         selectDropDownOption(calculator.getMachineType());
         log.info("Machine type selected");
         return this;
     }
 
-    public CloudCalculatorPage addGpuCheckboxclick() {
+    public CloudCalculatorPage clickAddGpuCheckbox() {
         clickThis(addGpusCheckbox);
         log.info("DPU added");
         return this;
     }
 
-    public CloudCalculatorPage addGpuType(PricingCalculator calculator) {
+    public CloudCalculatorPage selectGpuType(PricingCalculator calculator) {
         clickThis(gpuTypeSelector);
         selectDropDownOption(calculator.getGpuType());
         log.info("GPU type selected");
         return this;
     }
 
-    public CloudCalculatorPage numberOfGpu(PricingCalculator calculator) {
+    public CloudCalculatorPage selectNumberOfGpu(PricingCalculator calculator) {
         clickThis(numberOfGpusSelector);
         selectDropDownOption(calculator.getNumberOfGPUs());
         log.info("Number of GPU selected");
@@ -159,14 +159,14 @@ public class CloudCalculatorPage extends BasePage {
         return this;
     }
 
-    public CloudCalculatorPage committedUsage(PricingCalculator calculator) {
+    public CloudCalculatorPage selectCommittedUsage(PricingCalculator calculator) {
         clickThis(committedUsageSelector);
         selectDropDownOption(calculator.getCommittedUsage());
         log.info("Committed usage selected");
         return this;
     }
 
-    public String calculate() {
+    public String calculateTotalPrice() {
         clickThis(addToEstimate);
         waitTillElementIsPresent(By.xpath(TOTAL_PRICE_XPATH));
         log.info("Price is calculated");
@@ -182,7 +182,7 @@ public class CloudCalculatorPage extends BasePage {
 
 
     public CloudCalculatorPage switchToCalculatorPage() {
-        ArrayList<String> tabs = new ArrayList<>(driver.getWindowHandles());
+        List<String> tabs = new ArrayList<>(driver.getWindowHandles());
         driver.switchTo().window(tabs.get(0));
         driver.switchTo().defaultContent();
         switchToActiveFrame();

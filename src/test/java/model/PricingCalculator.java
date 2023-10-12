@@ -31,11 +31,11 @@ public class PricingCalculator {
         return numberOfInstances;
     }
 
-    public static String getOperatingSystem() {
+    public  String getOperatingSystem() {
         return operatingSystem;
     }
 
-    public static String getModel() {
+    public  String getModel() {
         return model;
     }
 
